@@ -400,6 +400,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1588730421}
   - component: {fileID: 1588730420}
+  - component: {fileID: 1588730422}
+  - component: {fileID: 1588730423}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -414,13 +416,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588730419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb171326d65f54982a6a81df1c00f984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openAIApiKey: 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
-  model: dall-e-2
+  model: dall-e-3
   imagePath: Assets/Resources/Images/image_edit_original.png
   maskPath: Assets/Resources/Images/mask.png
   prompt: A sunlit indoor lounge area with a pool containing a flamingo
@@ -442,6 +444,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588730422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588730419}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed4afb2b0ed748aa94a8aeee0c9070f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: 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
+  size: 1024x1024
+  prompt: a white siamese cat
+  model: dall-e-3
+  outputImage: {fileID: 1257977731}
+--- !u!114 &1588730423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588730419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb9be088cacc4a5990f271a164a951c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: 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
+  size: 1024x1024
+  defaultPrompt: a white siamese cat
+  model: dall-e-3
+  outputImage: {fileID: 1257977731}
+  saveLocation: GeneratedImages
 --- !u!1 &1720326382
 GameObject:
   m_ObjectHideFlags: 0

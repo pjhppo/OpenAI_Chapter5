@@ -2,19 +2,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
-using System;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 
 public class DalleImageGenerator : MonoBehaviour
 {
     [Header("API Settings")]
-    [SerializeField] private string apiKey = "sk-your-api-key-here"; // 인스펙터에서 API 키 설정
-    [SerializeField] private string size = "512x512";
+    [SerializeField] private string apiKey = "sk-your-api-key-here";
+    [SerializeField] private string size = "1024x1024"; // 사이즈 변경
     [SerializeField] private string prompt = "a white siamese cat";
     [SerializeField] private string model = "dall-e-3";
 
     [Header("Output")]
-    [SerializeField] private RawImage outputImage; // 생성된 이미지를 표시할 RawImage
+    [SerializeField] private RawImage outputImage;
 
     private const string API_URL = "https://api.openai.com/v1/images/generations";
 
@@ -23,13 +23,14 @@ public class DalleImageGenerator : MonoBehaviour
         StartCoroutine(GenerateImage(prompt));
     }
 
-    // 이미지 생성 요청 코루틴
     public IEnumerator GenerateImage(string prompt)
     {
-        // 요청 본문 생성
+        // 프롬프트 특수문자 이스케이프 처리
+        string sanitizedPrompt = prompt.Replace("\"", "\\\"");
+
         string jsonPayload = $@"{{
             ""model"": ""{model}"",
-            ""prompt"": ""{prompt}"",
+            ""prompt"": ""{sanitizedPrompt}"",
             ""n"": 1,
             ""size"": ""{size}""
         }}";
@@ -47,34 +48,36 @@ public class DalleImageGenerator : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                ProcessResponse(request.downloadHandler.text);
+                ExtractAndLoadImage(request.downloadHandler.text);
             }
             else
             {
                 Debug.LogError($"API 요청 실패: {request.error}");
+                Debug.LogError($"응답 본문: {request.downloadHandler.text}");
             }
         }
     }
 
-    // 응답 처리
-    private void ProcessResponse(string jsonResponse)
+    private void ExtractAndLoadImage(string jsonResponse)
     {
         try
         {
-            // JSON 파싱을 위한 간단한 클래스
-            DalleResponse response = JsonUtility.FromJson<DalleResponse>(jsonResponse);
-            if (response.data.Length > 0)
+            Match match = Regex.Match(jsonResponse, @"""url"":\s*""([^""]+)""");
+            if (match.Success)
             {
-                StartCoroutine(DownloadImage(response.data[0].url));
+                StartCoroutine(DownloadImage(match.Groups[1].Value));
+            }
+            else
+            {
+                Debug.LogError("URL 추출 실패. 전체 응답: " + jsonResponse);
             }
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
             Debug.LogError($"응답 처리 오류: {e.Message}");
         }
     }
 
-    // 이미지 다운로드 코루틴
     private IEnumerator DownloadImage(string imageUrl)
     {
         using (UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(imageUrl))
@@ -83,34 +86,13 @@ public class DalleImageGenerator : MonoBehaviour
 
             if (imageRequest.result == UnityWebRequest.Result.Success)
             {
-                Texture2D texture = DownloadHandlerTexture.GetContent(imageRequest);
-                outputImage.texture = texture;
-                Debug.Log("이미지 생성 및 로드 성공!");
+                outputImage.texture = DownloadHandlerTexture.GetContent(imageRequest);
+                Debug.Log("이미지 로드 성공!");
             }
             else
             {
                 Debug.LogError($"이미지 다운로드 실패: {imageRequest.error}");
             }
         }
-    }
-
-    // 테스트용 메서드
-    public void TestImageGeneration()
-    {
-        StartCoroutine(GenerateImage("a white siamese cat"));
-    }
-
-    // JSON 응답 파싱을 위한 헬퍼 클래스
-    [System.Serializable]
-    private class DalleResponse
-    {
-        public long created;
-        public DalleImageData[] data;
-    }
-
-    [System.Serializable]
-    private class DalleImageData
-    {
-        public string url;
     }
 }
