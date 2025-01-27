@@ -479,6 +479,9 @@ MonoBehaviour:
   model: dall-e-3
   outputImage: {fileID: 1257977731}
   saveLocation: GeneratedImages
+  buttonSave: {fileID: 0}
+  buttonBuild: {fileID: 0}
+  inputField: {fileID: 0}
 --- !u!1 &1720326382
 GameObject:
   m_ObjectHideFlags: 0
