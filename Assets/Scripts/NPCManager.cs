@@ -32,14 +32,8 @@ public class NPCManager : MonoBehaviour
         DalleNPCDrawer.Instance.inputField.onSubmit.AddListener(OnInputFieldSubmit);
 
         DalleNPCDrawer.Instance.OnImageDownEnd.AddListener(OnDrawingEnd);
-
-        // OpenAITTS.Instance.onResponseTTS.AddListener(StartTalking);
-
-        // OpenAITTS.Instance.OnStopAudio.AddListener(StopTalking);
-
     }
 
-    // InputField에서 입력이 발생했을 때 호출되는 메서드
     private void OnInputFieldChanged(string inputText)
     {
         if (!isListening)
