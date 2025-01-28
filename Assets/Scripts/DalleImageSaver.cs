@@ -25,6 +25,7 @@ public class DalleImageSaver : MonoBehaviour
     [SerializeField] private Button buttonSave;   // Save 버튼
     [SerializeField] private Button buttonBuild; // Build 버튼
     [SerializeField] private InputField inputField; // 입력 필드
+    [SerializeField] private Text textStatus; // 상태 표출 텍스트
 
     private Texture2D currentTexture; // 현재 출력된 텍스처
 
@@ -59,7 +60,11 @@ public class DalleImageSaver : MonoBehaviour
         inputField.onEndEdit.AddListener(OnInputFieldSubmit);
     }
 
-    public void GenerateImage(string prompt) => StartCoroutine(GenerateImageRoutine(prompt));
+    public void GenerateImage(string prompt)
+    {
+        StartCoroutine(GenerateImageRoutine(prompt));
+        textStatus.text = "이미지를 생성 중입니다. 잠시만 기다려 주세요.";
+    }
 
     private IEnumerator GenerateImageRoutine(string prompt)
     {
@@ -122,6 +127,7 @@ public class DalleImageSaver : MonoBehaviour
         {
             currentTexture = DownloadHandlerTexture.GetContent(request); // 텍스처 저장
             outputImage.texture = currentTexture;
+            textStatus.text = "이미지를 생성이 완료되었습니다. Save Image 버튼으로 저장해 주세요";
             Debug.Log("Image loaded successfully");
         }
         else
@@ -159,6 +165,7 @@ public class DalleImageSaver : MonoBehaviour
             AssetDatabase.Refresh();
 #endif
 
+            textStatus.text = "저장을 완료하였습니다.";
             Debug.Log($"Image saved to: {filePath}");
         }
         catch (System.Exception e)

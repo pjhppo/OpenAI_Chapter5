@@ -43,6 +43,7 @@ public class DalleImageGenerator : MonoBehaviour
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", $"Bearer {apiKey}");
+            Debug.Log("이미지를 요청하였습니다. 잠시만 기다려 주세요.");
 
             yield return request.SendWebRequest();
 
@@ -96,3 +97,4 @@ public class DalleImageGenerator : MonoBehaviour
         }
     }
 }
+

@@ -172,6 +172,7 @@ MonoBehaviour:
   buttonSave: {fileID: 1322809414}
   buttonBuild: {fileID: 1450822743}
   inputField: {fileID: 1815733260}
+  textStatus: {fileID: 974377205}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +362,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974377205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7534836658854013736, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
+  m_PrefabInstance: {fileID: 1322809413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1322809413
 PrefabInstance:
   m_ObjectHideFlags: 0

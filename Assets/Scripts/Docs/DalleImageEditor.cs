@@ -22,7 +22,7 @@ public class DalleImageEditor : MonoBehaviour
 {
     [Header("OpenAI Settings")]
     [SerializeField] private string openAIApiKey = "YOUR_API_KEY_HERE"; 
-    [SerializeField] private string model = "dall-e-3";
+    [SerializeField] private string model = "dall-e-2";
     
     [Header("Image Files (Local Paths)")]
     [SerializeField] private string imagePath = "sunlit_lounge.png";
@@ -34,7 +34,7 @@ public class DalleImageEditor : MonoBehaviour
     
     [Header("Image Generation Options")]
     [SerializeField] private int n = 1;
-    [SerializeField] private string size = "1024x1024";
+    [SerializeField] private string size = "512x512";
 
     [Header("Output Image")]
     [SerializeField] private RawImage outputImage; // 결과 이미지를 표시할 RawImage
@@ -63,6 +63,7 @@ public class DalleImageEditor : MonoBehaviour
         using (UnityWebRequest request = UnityWebRequest.Post("https://api.openai.com/v1/images/edits", form))
         {
             request.SetRequestHeader("Authorization", "Bearer " + openAIApiKey);
+            Debug.Log("이미지를 요청하였습니다. 잠시만 기다려 주세요.");
 
             yield return request.SendWebRequest();
 
@@ -107,7 +108,6 @@ public class DalleImageEditor : MonoBehaviour
                 Debug.Log("이미지 다운로드 성공: " + imageUrl);
                 Texture2D texture = DownloadHandlerTexture.GetContent(imageRequest);
                 outputImage.texture = texture;
-                outputImage.color = Color.white; // 혹시 모를 투명 상태 방지
             }
             else
             {
