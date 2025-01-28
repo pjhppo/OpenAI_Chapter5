@@ -32,24 +32,31 @@ public class DalleImageSaver : MonoBehaviour
     private const string API_URL = "https://api.openai.com/v1/images/generations";
 
     [System.Serializable]
-    private class DalleRequestData
+    private class DalleApiModels
     {
-        public string model;
-        public string prompt;
-        public int n = 1;
-        public string size;
-    }
+        // API 요청 데이터 클래스
+        [System.Serializable]
+        public class GenerationRequest
+        {
+            public string model;
+            public string prompt;
+            public int n = 1;
+            public string size;
+        }
 
-    [System.Serializable]
-    private class DalleResponse
-    {
-        public DalleImageData[] data;
-    }
-
-    [System.Serializable]
-    private class DalleImageData
-    {
-        public string url;
+        // API 응답 데이터 클래스 계층 구조
+        [System.Serializable]
+        public class GenerationResponse
+        {
+            public ImageData[] data;
+            
+            [System.Serializable]
+            public class ImageData
+            {
+                public string url;
+                // 필요시 확장 가능 (예: b64_json 필드 추가)
+            }
+        }
     }
 
     private void Start()
@@ -68,7 +75,7 @@ public class DalleImageSaver : MonoBehaviour
 
     private IEnumerator GenerateImageRoutine(string prompt)
     {
-        var requestData = new DalleRequestData
+        var requestData = new DalleApiModels.GenerationRequest
         {
             model = model,
             prompt = prompt,
@@ -104,7 +111,7 @@ public class DalleImageSaver : MonoBehaviour
     {
         try
         {
-            var response = JsonUtility.FromJson<DalleResponse>(jsonResponse);
+            var response = JsonUtility.FromJson<DalleApiModels.GenerationResponse>(jsonResponse);
             if (response.data?.Length > 0)
             {
                 StartCoroutine(DownloadImageRoutine(response.data[0].url));
