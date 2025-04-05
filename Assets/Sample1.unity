@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71665361}
-  - component: {fileID: 71665362}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -151,28 +150,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &71665362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71665358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb9be088cacc4a5990f271a164a951c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKey: 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
-  size: 1024x1024
-  defaultPrompt: a white siamese cat
-  model: dall-e-3
-  outputImage: {fileID: 1776503637}
-  saveLocation: GeneratedImages
-  buttonSave: {fileID: 1322809414}
-  buttonBuild: {fileID: 1450822743}
-  inputField: {fileID: 1815733260}
-  textStatus: {fileID: 974377205}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,17 +339,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &974377205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7534836658854013736, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
-  m_PrefabInstance: {fileID: 1322809413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1322809413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,50 +448,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
---- !u!114 &1322809414 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6990887415960818912, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
-  m_PrefabInstance: {fileID: 1322809413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1450822743 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5877237901788684194, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
-  m_PrefabInstance: {fileID: 1322809413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1776503637 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4459554607958431340, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
-  m_PrefabInstance: {fileID: 1322809413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1815733260 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1763432804384542936, guid: b3dcfd1ce639f48fbaebc46992cca68b, type: 3}
-  m_PrefabInstance: {fileID: 1322809413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
