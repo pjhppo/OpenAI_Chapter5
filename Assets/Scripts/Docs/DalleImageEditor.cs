@@ -25,7 +25,7 @@ public class DalleImageEditor : MonoBehaviour
     [SerializeField] private string model = "dall-e-2";
     
     [Header("Image Files (Local Paths)")]
-    [SerializeField] private string imagePath = "sunlit_lounge.png";
+    [SerializeField] private string imagePath = "image_edit_original.png";
     [SerializeField] private string maskPath = "mask.png";
 
     [Header("Edit Prompt")]
