@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb9be088cacc4a5990f271a164a951c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: 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
+  apiKey: 
   size: 1024x1024
   defaultPrompt: a white siamese cat
   model: dall-e-3
